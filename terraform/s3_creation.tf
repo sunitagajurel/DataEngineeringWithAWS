@@ -12,10 +12,10 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "app_bucket" {
-  bucket = "6-11-26-bucket"
+  bucket = "de/day-5"
 }
 
-resource "aws_s3_bucket_versioning" "versioning" {
+resource "aws_s3_bucket_versioning" "versioning_1" {
   bucket = aws_s3_bucket.app_bucket.id
 
   versioning_configuration {
@@ -24,13 +24,5 @@ resource "aws_s3_bucket_versioning" "versioning" {
 }
 
 resource "aws_s3_bucket" "app_bucket" {
-  bucket = "6-11-26-bucket"
-}
-
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.app_bucket.id
-
-  versioning_configuration {
-    status = "Enabled"
-  }
+  bucket = "de/day-5"
 }
