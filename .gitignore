@@ -1,7 +1,7 @@
 .aws
 *.pem
 *.tfstate
-*.txt
+*e.txt
 *.backup
 /data
 *.hcl
