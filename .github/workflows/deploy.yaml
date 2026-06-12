@@ -1,0 +1,39 @@
+name: Deploy Data Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      # - run: pytest
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::566739890601:role/github-identiry-role
+          aws-region: us-west-2
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform -chdir=terraform init
+
+      - run: terraform -chdir=terraform plan
+
+      - run: terraform -chdir=terraform apply -auto-approve
