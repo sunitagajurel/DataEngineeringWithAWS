@@ -15,8 +15,8 @@ provider "aws" {
 # Automatically package the src directory into a ZIP archive
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "${path.module}./lambda/lambda_code"
-  output_path = "${path.module}./lambda/bin/lambda_function.zip"
+  source_dir  = "${path.module}/lambda/lambda_code"
+  output_path = "${path.module}/lambda/bin/lambda_function.zip"
 }
 
 # Create the IAM Role that Lambda assumes during execution
